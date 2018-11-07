@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.dmytro.smarthome.Feature;
 import com.example.dmytro.smarthome.R;
-import com.example.dmytro.smarthome.Room;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,27 +17,27 @@ import com.example.dmytro.smarthome.Room;
  * create an instance of this fragment.
  */
 public class DetailsFragment extends Fragment {
-    Room room;
+    Feature feature;
 
     public DetailsFragment() {
         // Required empty public constructor
     }
 
-    public void setRoom(Room room) {
-        this.room = room;
+    public void setFeature(Feature feature) {
+        this.feature = feature;
     }
 
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param room Parameter 1.
+     * @param feature Parameter 1.
      * @return A new instance of fragment DetailsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static DetailsFragment newInstance(Room room) {
+    public static DetailsFragment newInstance(Feature feature) {
         DetailsFragment fragment = new DetailsFragment();
-        fragment.setRoom(room);
+        fragment.setFeature(feature);
         return fragment;
     }
 
@@ -52,7 +52,7 @@ public class DetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_details, container, false);
         TextView roomName = view.findViewById(R.id.roomName);
-        roomName.setText(this.room.getName());
+        roomName.setText(this.feature.getName());
         return view;
     }
 

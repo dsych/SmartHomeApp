@@ -14,15 +14,15 @@ import java.util.List;
 
 public class MainActivity extends Activity {
 
-    final List<Room> rooms = Arrays.asList(
-            new Room("Kitchen"),
-            new Room("Living Room"),
-            new Room("Master Bedroom"),
-            new Room("Bedroom"),
-            new Room("Basement"),
-            new Room("Guest Room"),
-            new Room("Backyard"),
-            new Room("Garage")
+    final List<Feature> features = Arrays.asList(
+            new Feature("Security"),
+            new Feature("Lights"),
+            new Feature("Thermostat"),
+            new Feature("Appliances"),
+            new Feature("Inventories"),
+            new Feature("Utilities"),
+            new Feature("Schedules"),
+            new Feature("Reminders")
     );
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,16 +30,16 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
 
-        for (int i = 0; i < rooms.size(); i++) {
-            Room currentRoom = rooms.get(i);
-            currentRoom.addFeature(new Feature(currentRoom, "Lights"));
+        for (int i = 0; i < features.size(); i++) {
+            Feature currentFeature = features.get(i);
+            currentFeature.addFeature(new Room(currentFeature, "Lights"));
         }
 
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setActionBar(myToolbar);
 
 
-        HomeScreenFragment homeScreen = HomeScreenFragment.newInstance(rooms);
+        HomeScreenFragment homeScreen = HomeScreenFragment.newInstance(features);
 
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.flContent, homeScreen).commit();

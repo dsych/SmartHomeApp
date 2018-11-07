@@ -13,7 +13,7 @@ import android.widget.GridLayout;
 
 import java.util.List;
 
-import com.example.dmytro.smarthome.Room;
+import com.example.dmytro.smarthome.Feature;
 import  com.example.dmytro.smarthome.R;
 
 
@@ -23,7 +23,7 @@ import  com.example.dmytro.smarthome.R;
  * create an instance of this fragment.
  */
 public class HomeScreenFragment extends Fragment {
-    List<Room> rooms;
+    List<Feature> features;
     int margins = 30;
     final int POSITION_TAG = R.id.activity_main;
 
@@ -31,21 +31,21 @@ public class HomeScreenFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public void setRooms(List<Room> rooms) {
-        this.rooms = rooms;
+    public void setFeatures(List<Feature> features) {
+        this.features = features;
     }
 
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param rooms List of all rooms on the screen.
+     * @param features List of all features on the screen.
      * @return A new instance of fragment HomeScreenFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static HomeScreenFragment newInstance(List<Room> rooms) {
+    public static HomeScreenFragment newInstance(List<Feature> features) {
         HomeScreenFragment fragment = new HomeScreenFragment();
-        fragment.setRooms(rooms);
+        fragment.setFeatures(features);
         return fragment;
     }
 
@@ -64,9 +64,9 @@ public class HomeScreenFragment extends Fragment {
 
         Button roomTile;
 
-        for (int i = 0; i < this.rooms.size(); i++) {
+        for (int i = 0; i < this.features.size(); i++) {
             roomTile = new Button(getContext());
-            roomTile.setText(this.rooms.get(i).getName());
+            roomTile.setText(this.features.get(i).getName());
             roomTile.setBackgroundResource(R.drawable.button_selector);
             roomTile.setTag(this.POSITION_TAG, i);
             roomTile.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +74,7 @@ public class HomeScreenFragment extends Fragment {
                 public void onClick(View view) {
                     int index = (int)view.getTag(POSITION_TAG);
                     FragmentManager fragmentManager = getActivity().getFragmentManager();
-                    DetailsFragment fragment = DetailsFragment.newInstance(rooms.get(index));
+                    DetailsFragment fragment = DetailsFragment.newInstance(features.get(index));
                     fragmentManager.beginTransaction().replace(R.id.flContent, fragment).addToBackStack("details").commit();
                 }
             });
