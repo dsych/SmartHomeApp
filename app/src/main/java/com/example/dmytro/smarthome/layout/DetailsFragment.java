@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.dmytro.smarthome.Feature;
@@ -51,8 +52,14 @@ public class DetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_details, container, false);
-        TextView roomName = view.findViewById(R.id.roomName);
-        roomName.setText(this.feature.getName());
+        LinearLayout insertPoint = view.findViewById(R.id.detailsContent);
+
+        View[] views = this.feature.render();
+
+        for(int i = 0; i < views.length; i++) {
+            insertPoint.addView(views[i]);
+        }
+
         return view;
     }
 

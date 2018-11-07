@@ -1,5 +1,7 @@
 package com.example.dmytro.smarthome;
 
+import android.view.View;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +23,17 @@ public class Feature {
         this.name = name;
     }
 
-    public boolean addFeature(Room f) {
+    public View[] render() {
+        View[] views = new View[this.rooms.size()];
+
+        for(int i = 0; i < this.rooms.size(); i++) {
+            views[i] = this.rooms.get(i).render();
+        }
+        return views;
+    }
+
+
+    public boolean addRoom(Room f) {
         return rooms.add(f);
     }
 
