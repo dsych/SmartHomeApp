@@ -20,6 +20,7 @@ import com.example.dmytro.smarthome.R;
 public class DetailsFragment extends Fragment {
     Feature feature;
 
+
     public DetailsFragment() {
         // Required empty public constructor
     }
@@ -51,8 +52,8 @@ public class DetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_details, container, false);
-        LinearLayout insertPoint = view.findViewById(R.id.detailsContent);
+        View view = inflater.inflate(this.feature.getLayout(), container, false);
+        LinearLayout insertPoint = view.findViewById(this.feature.getInsertion_point());
 
         View[] views = this.feature.render();
 

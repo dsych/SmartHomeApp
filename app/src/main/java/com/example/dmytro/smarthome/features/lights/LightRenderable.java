@@ -8,8 +8,9 @@ import android.widget.ToggleButton;
 
 import com.example.dmytro.smarthome.R;
 import com.example.dmytro.smarthome.features.IRenderable;
+import com.example.dmytro.smarthome.features.IRenderableSubject;
 
-public class LightRenderable implements IRenderable {
+public class LightRenderable implements IRenderableSubject {
     String name;
     boolean state;
     Context context;
@@ -38,6 +39,11 @@ public class LightRenderable implements IRenderable {
 
         ToggleButton toggle = view.findViewById(R.id.lights_value);
         toggle.setChecked(this.state);
+
+    }
+
+    @Override
+    public void receiveState(Object state) {
 
     }
 }

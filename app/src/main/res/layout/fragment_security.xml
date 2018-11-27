@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/element_margin"
+        android:layout_marginEnd="@dimen/element_margin"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/header_text_size"
+            android:gravity="center_horizontal"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:text="@string/lock_all"/>
+
+        <ImageButton
+            android:id="@+id/global_lock_toggle"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/toggle_all_locks"
+            android:scaleType="fitXY"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_locked_state" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/securityContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"></LinearLayout>
+
+</LinearLayout>

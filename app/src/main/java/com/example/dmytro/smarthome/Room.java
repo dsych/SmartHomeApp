@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.dmytro.smarthome.features.IRenderable;
+import com.example.dmytro.smarthome.features.IRenderableSubject;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -16,36 +17,39 @@ import java.util.List;
 /**
  * Created by Dmytro on 10/7/2018.
  */
-
 public class Room implements IRenderable {
     Feature parentFeature;
     String name;
     Context context;
     View view;
+    int viewId;
 
-    List<IRenderable> features;
+    List<IRenderableSubject> features;
 
-    public Room(Feature parentFeature, String name, Context context) {
+    public Room(Feature parentFeature, String name, Context context, int viewId) {
         this.parentFeature = parentFeature;
         this.name = name;
         this.features = new LinkedList<>();
         this.context = context;
+        this.viewId = viewId;
     }
 
     public String getName() {
         return name;
     }
 
-    public void addFeature(IRenderable feature) {
+    public void addFeature(IRenderableSubject feature) {
         this.features.add(feature);
     }
 
     public View render() {
         LayoutInflater inflater = (LayoutInflater)   this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        view = inflater.inflate(R.layout.room_view, null);
+        view = inflater.inflate(this.viewId, null);
 
         TextView header = view.findViewById(R.id.header_text);
-        header.setText(this.name);
+        if(header != null) {
+            header.setText(this.name);
+        }
 
         for(int i = 0; i < this.features.size(); i++) {
             View featureView = this.features.get(i).render();
@@ -56,4 +60,13 @@ public class Room implements IRenderable {
         return view;
     }
 
+    public List<IRenderableSubject> getFeatures() {
+        return features;
+    }
+
+    public void notifyChildren(Object value) {
+        for(int i = 0; i < this.features.size(); i++) {
+            this.features.get(i).receiveState(value);
+        }
+    }
 }

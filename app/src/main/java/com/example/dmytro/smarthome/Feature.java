@@ -12,10 +12,14 @@ import java.util.List;
 public class Feature {
     List<Room> rooms;
     String name;
+    int layout;
+    int insertion_point;
 
-    public Feature(String name) {
+    public Feature(String name, int layout, int insertion_point) {
         this.name = name;
         rooms = new ArrayList<>();
+        this.layout = layout;
+        this.insertion_point = insertion_point;
     }
 
     public Feature(List<Room> rooms, String name) {
@@ -32,6 +36,18 @@ public class Feature {
         return views;
     }
 
+
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public int getLayout() {
+        return layout;
+    }
+
+    public int getInsertion_point() {
+        return insertion_point;
+    }
 
     public boolean addRoom(Room f) {
         return rooms.add(f);

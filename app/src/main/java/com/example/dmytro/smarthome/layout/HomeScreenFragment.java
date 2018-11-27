@@ -14,7 +14,7 @@ import android.widget.GridLayout;
 import java.util.List;
 
 import com.example.dmytro.smarthome.Feature;
-import  com.example.dmytro.smarthome.R;
+import com.example.dmytro.smarthome.R;
 
 
 /**
@@ -72,9 +72,20 @@ public class HomeScreenFragment extends Fragment {
             roomTile.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int index = (int)view.getTag(POSITION_TAG);
+                    int index = (int) view.getTag(POSITION_TAG);
                     FragmentManager fragmentManager = getActivity().getFragmentManager();
-                    DetailsFragment fragment = DetailsFragment.newInstance(features.get(index));
+                    Feature f = features.get(index);
+                    Fragment fragment;
+
+                    switch (index) {
+                        case 0:
+                            fragment = SecurityFragment.newInstance(f);
+                            break;
+                        default:
+                            fragment = DetailsFragment.newInstance(f);
+                            break;
+                    }
+
                     fragmentManager.beginTransaction().replace(R.id.flContent, fragment).addToBackStack("details").commit();
                 }
             });
